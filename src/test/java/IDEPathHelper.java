@@ -19,7 +19,10 @@ public class IDEPathHelper {
       mavenSourcesDirectory = mavenSrcTestDirectory.resolve("java");
       mavenResourcesDirectory = mavenSrcTestDirectory.resolve("resources");
       mavenBinariesDirectory = mavenTargetDirectory.resolve("test-classes");
-      resultsDirectory = mavenTargetDirectory.resolve("gatling");
+      
+      String outProp = System.getProperty("gatling.output");
+      resultsDirectory = (outProp == null ? mavenTargetDirectory.resolve("gatling") : Paths.get(outProp));
+      //resultsDirectory = mavenTargetDirectory.resolve("gatling");
       recorderConfigFile = mavenResourcesDirectory.resolve("recorder.conf");
     } catch (URISyntaxException e) {
       throw new ExceptionInInitializerError(e);
