@@ -53,6 +53,6 @@ public class BasicSimulation extends Simulation {
       .formParam("company", "37"));
 
   {
-    setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
+    setUp(scn.injectOpen(atOnceUsers(10)).protocols(httpProtocol));
   }
 }
