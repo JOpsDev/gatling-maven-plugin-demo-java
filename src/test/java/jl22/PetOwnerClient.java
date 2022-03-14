@@ -4,8 +4,9 @@ import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 
-import static io.gatling.javaapi.core.CoreDsl.atOnceUsers;
+import static io.gatling.javaapi.core.CoreDsl.rampUsersPerSec;
 import static io.gatling.javaapi.core.CoreDsl.scenario;
+import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.http;
 
 public class PetOwnerClient extends Simulation {
@@ -46,7 +47,9 @@ public class PetOwnerClient extends Simulation {
       .get("/vets.html/?page=2"));
     //.pause(Duration.ofMillis(734))
 
-  {
-    setUp(scn.injectOpen(atOnceUsers(10)).protocols(httpProtocol));
-  }
+    {
+        setUp(scn.injectOpen(
+                rampUsersPerSec(1).to(100).during(60)
+        ).protocols(httpProtocol));
+    }
 }
