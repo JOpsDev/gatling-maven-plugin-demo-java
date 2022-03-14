@@ -22,10 +22,10 @@ public class PetOwnerClient extends Simulation {
             .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0");
 
     ScenarioBuilder scn = scenario("load simulation 2022")
-            .during(5).on(
+            .during(1).on(
                     exec(http("open_find")
                             .get("/owners/find"))
-                            //.pause(Duration.ofMillis(200))
+                    //.pause(Duration.ofMillis(200))
                     .exec(http("find_all")
                             .get("/owners?lastName="))
                     //.pause(2)
@@ -50,12 +50,10 @@ public class PetOwnerClient extends Simulation {
                     .exec(http("list_vets_2")
                             .get("/vets.html/?page=2"))
             );
-    //.pause(Duration.ofMillis(734))
 
     {
         setUp(scn.injectClosed(
-                constantConcurrentUsers(10).during(10),
-                rampConcurrentUsers(10).to(60).during(50)
+                rampConcurrentUsers(1).to(30).during(60)
         ).protocols(httpProtocol));
     }
 }
