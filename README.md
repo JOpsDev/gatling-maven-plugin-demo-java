@@ -1,16 +1,6 @@
-Gatling plugin for Maven - Java demo project
+JavaLand 22 Performance CTF
 ============================================
 
-A simple showcase of a Maven project using the Gatling plugin for Maven. Refer to the plugin documentation
-[on the Gatling website](https://gatling.io/docs/current/extensions/maven_plugin/) for usage.
-
-This project is written in Java, others are available for [Kotlin](https://github.com/gatling/gatling-maven-plugin-demo-kotlin)
-and [Scala](https://github.com/gatling/gatling-maven-plugin-demo-scala).
-
-It includes:
-
-* minimal `pom.xml`
-* latest version of `io.gatling:gatling-maven-plugin` applied
-* sample [Simulation](https://gatling.io/docs/gatling/reference/current/general/concepts/#simulation) class,
-demonstrating sufficient Gatling functionality
-* proper source file layout
+On the laod generation system (load server) start this project with the `runScenario.sh` script.
+Results will be placed in `/var/www/html/gatling/` and thus be retrievable from the included web server:
+http://ip-of-load-server/gatling/
